@@ -1,0 +1,772 @@
+/* ==========================================================
+   OPERACIÓN HUELLA DIGITAL · Hoja de estilos (Sprint 2)
+   Equipo Rastro Cero
+   ----------------------------------------------------------
+   PALETA: tríada del semáforo de la infografía
+     PARÁ   → rojo  #ff5c5c  (alertas y rutas de error)
+     PENSÁ  → azul  #4da3ff  (color principal: títulos, menú)
+     ELEGÍ  → verde #3ddc84  (aciertos, insignias y botones)
+   NEUTROS: azul noche #0d1b2a (fondo) · #13263b (tarjetas)
+            #e8eef6 (texto) · rgb(176, 196, 222) (texto suave)
+   FUENTES: Chakra Petch (títulos, tono "centro de operaciones")
+            Atkinson Hyperlegible (texto, pensada para leer fácil)
+   ========================================================== */
+
+
+/* === BASE === */
+
+/* border-box: el width incluye padding y borde, así las cajas no crecen */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: #0d1b2a;
+  color: #e8eef6;
+  font-family: "Atkinson Hyperlegible", Arial, sans-serif;
+  font-size: 1.125rem; /* 18px: lectura cómoda (Lectura Fácil) */
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Chakra Petch", "Trebuchet MS", sans-serif;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+h2 {
+  margin: 0 0 1rem;
+  font-size: 1.75rem;
+  color: #4da3ff;
+}
+
+h3 {
+  margin: 1.5rem 0 0.75rem;
+  font-size: 1.3rem;
+  color: white;
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+strong {
+  color: white;
+}
+
+a {
+  color: #4da3ff;
+  font-weight: bold;
+}
+
+a:hover,
+a:focus {
+  color: #3ddc84;
+}
+
+/* Foco visible para quien navega con teclado (accesibilidad) */
+a:focus,
+button:focus,
+input:focus,
+select:focus,
+textarea:focus,
+summary:focus {
+  outline: 3px solid #4da3ff;
+  outline-offset: 2px;
+}
+
+/* Las líneas horizontales separan secciones con calma */
+hr {
+  width: 90%;
+  max-width: 60rem;
+  margin: 2.5rem auto;
+  border: 0;
+  border-top: 1px dashed rgb(77, 163, 255);
+}
+
+/* Fuera del main, encabezado, menú y pie ya se separan con su propio borde */
+body > hr {
+  display: none;
+}
+
+/* Al saltar desde el menú, la sección no queda tapada por el menú fijo */
+section,
+article {
+  scroll-margin-top: 10rem;
+}
+
+
+/* === ENCABEZADO === */
+
+#inicio {
+  padding: 3rem 1rem 2rem;
+  background-color: #13263b;
+  border-bottom: 4px solid #4da3ff;
+  text-align: center;
+}
+
+#inicio h1 {
+  margin: 0.75rem 0;
+  font-size: 2.4rem;
+  color: white;
+  /* Efecto neón: dos sombras del mismo color, una encima de la otra */
+  text-shadow: 0 0 8px #4da3ff, 0 0 24px #4da3ff;
+}
+
+.etiqueta-mision {
+  display: inline-block;
+  padding: 0.3rem 0.9rem;
+  border: 1px dashed #ff5c5c;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  color: #ff5c5c;
+}
+
+.lema {
+  font-size: 1.4rem;
+}
+
+.equipo {
+  margin-bottom: 0.25rem;
+}
+
+.docentes {
+  font-style: italic;
+  color: rgb(176, 196, 222);
+}
+
+/* Semáforo PARÁ · PENSÁ · ELEGÍ, en fila flexible */
+.semaforo {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin: 1.5rem 0 0;
+}
+
+.paso {
+  display: inline-block;
+  padding: 0.5rem 1.1rem;
+  border-radius: 8px;
+  font-family: "Chakra Petch", "Trebuchet MS", sans-serif;
+  font-weight: 700;
+  color: #0d1b2a;
+}
+
+.paso-parar {
+  background-color: #ff5c5c;
+}
+
+.paso-pensar {
+  background-color: #4da3ff;
+}
+
+.paso-elegir {
+  background-color: #3ddc84;
+}
+
+
+/* === MENÚ (fijo arriba al hacer scroll) === */
+
+#menu-principal {
+  position: sticky;
+  top: 0;
+  z-index: 10; /* queda por encima del contenido al hacer scroll */
+  padding: 0.75rem 1rem;
+  background-color: rgb(13, 27, 42);
+  border-bottom: 2px solid #4da3ff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+#menu-principal h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+  color: rgb(176, 196, 222);
+  text-align: center;
+}
+
+#menu-principal ul {
+  display: flex;
+  gap: 0.5rem;
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 0 0 0.4rem;
+  list-style: none;
+  overflow-x: auto; /* en el celular, el menú se desliza de costado */
+}
+
+#menu-principal a {
+  display: inline-block;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid #4da3ff;
+  border-radius: 999px;
+  font-family: "Chakra Petch", "Trebuchet MS", sans-serif;
+  font-size: 0.95rem;
+  color: #e8eef6;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+#menu-principal a:hover,
+#menu-principal a:focus {
+  background-color: #4da3ff;
+  color: #0d1b2a;
+}
+
+/* En pantallas anchas, el menú baja de renglón en vez de deslizarse */
+@media (min-width: 900px) {
+  #menu-principal ul {
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow-x: visible;
+  }
+}
+
+
+/* === CONTENIDO PRINCIPAL === */
+
+#contenido-principal {
+  max-width: 60rem;
+  margin: 0 auto; /* centra el contenido */
+  padding: 0 1rem;
+}
+
+/* Cada sección es una tarjeta "elevada" */
+main section {
+  padding: 1.25rem 1rem;
+  background-color: #13263b;
+  border: 1px solid #24476b;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+}
+
+
+/* === MENSAJE DE LA CENTRAL (narrativa) === */
+
+.mensaje {
+  overflow: hidden; /* contiene al avatar flotado */
+  padding: 1.25rem;
+  background-color: #0d1b2a;
+  border: 1px solid #4da3ff;
+  border-radius: 12px;
+}
+
+/* El personaje: un círculo flotado a la izquierda, el texto lo rodea */
+.avatar {
+  float: left;
+  width: 4.5rem;
+  height: 4.5rem;
+  margin: 0 1rem 0.5rem 0;
+  background-color: #4da3ff;
+  border-radius: 50%;
+  font-size: 2.5rem;
+  line-height: 4.5rem;
+  text-align: center;
+  box-shadow: 0 0 6px #4da3ff, 0 0 18px #4da3ff;
+}
+
+.rangos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rangos li {
+  padding: 0.75rem 1rem;
+  background-color: #0d1b2a;
+  border: 1px solid #24476b;
+  border-left: 4px solid #3ddc84;
+  border-radius: 8px;
+}
+
+.rangos strong {
+  display: block;
+  font-family: "Chakra Petch", "Trebuchet MS", sans-serif;
+  color: #3ddc84;
+}
+
+
+/* === CAJAS DE CONTENIDO === */
+
+/* Caso de la situación inicial: acento rojo de alerta */
+.caso {
+  padding: 1.25rem;
+  background-color: #0d1b2a;
+  border-left: 6px solid #ff5c5c;
+  border-radius: 8px;
+}
+
+.caso h3 {
+  margin-top: 0;
+  color: #ff5c5c;
+}
+
+/* Idea clave: acento azul, como una nota destacada */
+.idea-clave {
+  padding: 1.25rem;
+  background-color: #0d1b2a;
+  border-left: 6px solid #4da3ff;
+  border-radius: 8px;
+}
+
+.idea-clave h3 {
+  margin-top: 0;
+  color: #4da3ff;
+}
+
+.regla {
+  font-family: "Chakra Petch", "Trebuchet MS", sans-serif;
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+
+/* === IMAGEN Y VIDEO === */
+
+#imagen-apoyo img {
+  display: block;
+  max-width: 100%; /* nunca más ancha que su contenedor */
+  height: auto;
+  margin: 1rem auto;
+  border: 3px solid #4da3ff;
+  border-radius: 12px;
+}
+
+.video iframe {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9; /* mantiene la proporción del video */
+  border: 0;
+  border-radius: 12px;
+}
+
+
+/* === FORMULARIOS === */
+
+fieldset {
+  margin: 0;
+  padding: 0.75rem;
+  border: 1px solid #24476b;
+  border-radius: 12px;
+}
+
+legend {
+  padding: 0 0.5rem;
+  font-family: "Chakra Petch", "Trebuchet MS", sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #4da3ff;
+}
+
+/* Cada opción (checkbox o radio) en su propia caja */
+.opcion {
+  margin: 0 0 0.75rem;
+  padding: 0.6rem 0.8rem;
+  background-color: #13263b;
+  border: 1px solid #24476b;
+  border-radius: 8px;
+}
+
+.opcion label {
+  cursor: pointer;
+}
+
+.opcion input {
+  width: 1.2rem;
+  height: 1.2rem;
+  margin: 0 0.5rem 0 0;
+  vertical-align: middle;
+  accent-color: #3ddc84;
+}
+
+/* Campos de texto, listas y áreas de texto */
+.campo {
+  margin: 0 0 1rem;
+}
+
+.campo label {
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+input[type="text"],
+select,
+textarea {
+  display: block;
+  width: 100%;
+  max-width: 32rem;
+  padding: 0.6rem 0.8rem;
+  background-color: #0d1b2a;
+  border: 2px solid #24476b;
+  border-radius: 8px;
+  font-family: "Atkinson Hyperlegible", Arial, sans-serif;
+  font-size: 1rem;
+  color: #e8eef6;
+}
+
+textarea {
+  max-width: 100%;
+  resize: vertical;
+}
+
+input[type="text"]:focus,
+select:focus,
+textarea:focus {
+  border-color: #4da3ff;
+}
+
+::placeholder {
+  color: rgb(150, 170, 195);
+}
+
+/* Botones y enlaces con forma de botón: verde de "elegí" con brillo neón */
+button,
+.boton {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.7rem 1.4rem;
+  background-color: #3ddc84;
+  border: 0;
+  border-radius: 999px;
+  box-shadow: 0 0 6px #3ddc84, 0 0 18px rgba(61, 220, 132, 0.5);
+  font-family: "Chakra Petch", "Trebuchet MS", sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0d1b2a;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+button:hover,
+button:focus,
+.boton:hover,
+.boton:focus {
+  background-color: white;
+  color: #0d1b2a;
+}
+
+
+/* === ACTIVIDADES === */
+
+.actividad {
+  position: relative; /* referencia para la etiqueta de progreso */
+  margin: 1.5rem 0;
+  padding: 3.25rem 1rem 1rem;
+  background-color: #0d1b2a;
+  border: 2px solid #4da3ff;
+  border-radius: 16px;
+}
+
+.actividad h3 {
+  margin-top: 0;
+}
+
+/* Etiqueta "Progreso: N de 3" anclada en la esquina */
+.progreso {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  margin: 0;
+  padding: 0.25rem 0.8rem;
+  background-color: #4da3ff;
+  border-radius: 999px;
+  font-size: 0.9rem;
+}
+
+.progreso strong {
+  color: #0d1b2a;
+}
+
+.publicacion-ficticia {
+  padding: 1rem 1.25rem;
+  background-color: #13263b;
+  border-left: 4px solid #ff5c5c;
+  border-radius: 8px;
+  font-style: italic;
+}
+
+/* Pista oculta para los exploradores: se abre al tocarla */
+.pista-oculta {
+  margin: 1rem 0;
+  padding: 0.75rem 1rem;
+  border: 1px dashed #4da3ff;
+  border-radius: 12px;
+}
+
+.pista-oculta summary {
+  font-weight: bold;
+  color: #4da3ff;
+  cursor: pointer;
+}
+
+.pista-oculta p {
+  margin: 0.75rem 0 0;
+}
+
+.dupla {
+  margin: 1.25rem 0 0;
+  padding: 0.75rem 1rem;
+  border-left: 4px solid #3ddc84;
+  background-color: #13263b;
+  border-radius: 8px;
+}
+
+
+/* === RETROALIMENTACIÓN (feedback de acierto en verde) === */
+
+.retroalimentacion {
+  margin: 1rem 0 1.5rem;
+  padding: 1.25rem;
+  background-color: #12352a;
+  border: 2px solid #3ddc84;
+  border-left-width: 8px;
+  border-radius: 16px;
+  box-shadow: 0 0 14px rgba(61, 220, 132, 0.35);
+}
+
+.retroalimentacion h3 {
+  margin-top: 0;
+  color: #3ddc84;
+}
+
+.insignia {
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  background-color: #0d1b2a;
+  border: 2px solid #3ddc84;
+  border-radius: 999px;
+  font-weight: bold;
+  color: #3ddc84;
+}
+
+.ascenso {
+  font-family: "Chakra Petch", "Trebuchet MS", sans-serif;
+  font-size: 1.15rem;
+}
+
+/* Ruta alternativa: el camino de quien eligió mal (acento rojo) */
+.ruta {
+  margin: 0 0 1.5rem;
+  padding: 1.25rem;
+  background-color: #0d1b2a;
+  border: 2px dashed #ff5c5c;
+  border-radius: 16px;
+}
+
+.ruta h3 {
+  margin-top: 0;
+  color: #ff5c5c;
+}
+
+
+/* === DESAFÍO FINAL Y CIERRE === */
+
+.recompensa {
+  padding: 0.75rem 1rem;
+  background-color: #0d1b2a;
+  border: 1px solid #3ddc84;
+  border-radius: 8px;
+}
+
+#mision-completada {
+  border: 2px solid #3ddc84;
+  text-align: center;
+}
+
+#mision-completada h2 {
+  color: #3ddc84;
+  text-shadow: 0 0 8px #3ddc84, 0 0 20px #3ddc84;
+}
+
+.rango-final {
+  display: inline-block;
+  padding: 0.5rem 1.25rem;
+  border: 2px solid #4da3ff;
+  border-radius: 999px;
+  font-family: "Chakra Petch", "Trebuchet MS", sans-serif;
+  font-size: 1.2rem;
+}
+
+.panel-insignias {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin: 0 0 1.5rem;
+  padding: 0;
+  list-style: none;
+}
+
+.tarjeta-insignia {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 10rem;
+  padding: 1rem 0.75rem;
+  background-color: #0d1b2a;
+  border: 2px solid #3ddc84;
+  border-radius: 16px;
+  font-size: 1rem;
+}
+
+.icono-insignia {
+  width: 3.5rem;
+  height: 3.5rem;
+  margin-bottom: 0.5rem;
+  background-color: #12352a;
+  border-radius: 50%; /* círculo perfecto */
+  font-size: 2rem;
+  line-height: 3.5rem;
+}
+
+.total-puntos {
+  font-size: 1.3rem;
+}
+
+
+/* === BASE DEL EQUIPO (socializadores y filántropos) === */
+
+.tarjetas-equipo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.tarjeta-equipo {
+  flex: 1 1 15rem; /* crece y se acomoda: 3 en fila o una debajo de otra */
+  padding: 1.25rem;
+  background-color: #0d1b2a;
+  border: 1px solid #24476b;
+  border-top: 4px solid #3ddc84;
+  border-radius: 12px;
+}
+
+.tarjeta-equipo h3 {
+  margin-top: 0;
+}
+
+
+/* === PARA RECORDAR === */
+
+#para-recordar li {
+  margin-bottom: 0.5rem;
+}
+
+#para-recordar li::marker {
+  color: #3ddc84;
+}
+
+
+/* === PIE DE PÁGINA === */
+
+#pie-de-pagina {
+  padding: 2rem 1rem;
+  background-color: #13263b;
+  border-top: 4px solid #4da3ff;
+  font-size: 1rem;
+  color: rgb(176, 196, 222);
+}
+
+#pie-de-pagina section,
+#pie-de-pagina > p {
+  max-width: 60rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#pie-de-pagina h2 {
+  font-size: 1.4rem;
+}
+
+#pie-de-pagina > p {
+  margin-bottom: 0.25rem;
+}
+
+
+/* ==========================================================
+   DOCUMENTO DE DISEÑO (documento-de-diseno.html)
+   Reutiliza esta misma hoja: un solo .css para todo el sitio
+   ========================================================== */
+
+.tabla-diseno {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1rem;
+}
+
+.tabla-diseno th,
+.tabla-diseno td {
+  padding: 0.75rem;
+  border: 1px solid #24476b;
+  text-align: left;
+  vertical-align: top;
+}
+
+.tabla-diseno th {
+  background-color: #0d1b2a;
+  font-family: "Chakra Petch", "Trebuchet MS", sans-serif;
+  color: #4da3ff;
+}
+
+.tabla-scroll {
+  overflow-x: auto; /* la tabla se desliza en pantallas chicas */
+}
+
+.mockup {
+  display: block;
+  width: 100%;
+  height: auto;
+  background-color: #0d1b2a;
+  border: 1px solid #24476b;
+  border-radius: 12px;
+}
+
+.muestras {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 0 0 1rem;
+  padding: 0;
+  list-style: none;
+}
+
+.muestra {
+  width: 9rem;
+  padding: 0.75rem;
+  background-color: #0d1b2a;
+  border: 1px solid #24476b;
+  border-radius: 12px;
+  font-size: 0.95rem;
+}
+
+.muestra-color {
+  display: block;
+  height: 3.5rem;
+  margin-bottom: 0.5rem;
+  border-radius: 8px;
+}
+
+.fuente-titulo {
+  font-family: "Chakra Petch", "Trebuchet MS", sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.fuente-texto {
+  font-family: "Atkinson Hyperlegible", Arial, sans-serif;
+  font-size: 1.2rem;
+}
+
+.pendiente {
+  padding: 0.75rem 1rem;
+  background-color: #0d1b2a;
+  border: 2px dashed #ff5c5c;
+  border-radius: 8px;
+}
